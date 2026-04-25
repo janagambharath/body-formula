@@ -337,53 +337,10 @@ function Reveal({ children, className = '', delay = 0, initialVisible = false })
 }
 
 function AnimatedCounter({ value, prefix = '', suffix = '', decimals = 0, className = '' }) {
-  const ref = useRef(null);
-  const [display, setDisplay] = useState(value);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return undefined;
-    if (typeof IntersectionObserver === 'undefined') {
-      setDisplay(value);
-      return undefined;
-    }
-
-    let frameId = 0;
-    const fallbackId = window.setTimeout(() => setDisplay(value), 2200);
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-
-        window.clearTimeout(fallbackId);
-        setDisplay(0);
-        const start = performance.now();
-        const duration = 1500;
-
-        const tick = (time) => {
-          const progress = Math.min((time - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          setDisplay(value * eased);
-          if (progress < 1) frameId = requestAnimationFrame(tick);
-        };
-
-        frameId = requestAnimationFrame(tick);
-        observer.unobserve(entry.target);
-      },
-      { threshold: 0.35 },
-    );
-
-    observer.observe(node);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frameId);
-      window.clearTimeout(fallbackId);
-    };
-  }, [value]);
-
   return (
-    <span ref={ref} className={className}>
+    <span className={className}>
       {prefix}
-      {display.toFixed(decimals)}
+      {Number(value).toFixed(decimals)}
       {suffix}
     </span>
   );
