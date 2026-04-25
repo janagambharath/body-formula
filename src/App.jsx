@@ -267,7 +267,7 @@ function Reveal({ children, className = '', delay = 0, initialVisible = false })
 
 function AnimatedCounter({ value, prefix = '', suffix = '', decimals = 0, className = '' }) {
   const ref = useRef(null);
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     const node = ref.current;
