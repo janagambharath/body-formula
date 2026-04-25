@@ -1323,6 +1323,20 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    const scrollToHash = () => {
+      const target = window.location.hash ? document.querySelector(window.location.hash) : null;
+      if (target) target.scrollIntoView({ block: 'start' });
+    };
+
+    const timeoutId = window.setTimeout(scrollToHash, 120);
+    window.addEventListener('hashchange', scrollToHash);
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener('hashchange', scrollToHash);
+    };
+  }, []);
+
   return (
     <div className="premium-noise min-h-screen bg-formula-dark text-stone-100">
       <Navbar />
