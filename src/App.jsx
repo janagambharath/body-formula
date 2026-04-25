@@ -4,6 +4,7 @@ import {
   Award,
   CalendarCheck,
   Check,
+  ChevronLeft,
   ChevronRight,
   Clock,
   Dumbbell,
@@ -879,20 +880,6 @@ function extractReviewTags(review) {
     .slice(0, 4);
 }
 
-function getDetectedThemes(reviews) {
-  return reviewThemeRules
-    .map((theme) => ({
-      ...theme,
-      count: reviews.filter((review) => {
-        const text = `${review.quote} ${review.fullText || ''}`.toLowerCase();
-        return theme.keywords.some((keyword) => text.includes(keyword));
-      }).length,
-    }))
-    .filter((theme) => theme.count > 0)
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
-}
-
 function ReviewStars({ rating = 5 }) {
   return (
     <div className="flex items-center gap-1 text-formula-orange" aria-label={`${rating} star Google review`}>
@@ -910,11 +897,14 @@ function ReviewStars({ rating = 5 }) {
 
 function Testimonials() {
   const reviews = verifiedGoogleReviews;
-  const detectedThemes = getDetectedThemes(reviews);
   const averageRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
+  const [activeReviewIndex, setActiveReviewIndex] = useState(0);
+  const activeReview = reviews[activeReviewIndex];
+  const activeTags = extractReviewTags(activeReview);
+  const goToReview = (index) => setActiveReviewIndex((index + reviews.length) % reviews.length);
 
   return (
-    <section id="testimonials" className="relative overflow-hidden bg-formula-dark px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section id="testimonials" className="relative overflow-hidden bg-formula-dark px-5 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-formula-orange/40 to-transparent" />
       <div className="mx-auto max-w-7xl">
         <SectionHeader
@@ -924,125 +914,132 @@ function Testimonials() {
         />
 
         <Reveal delay={80}>
-          <div className="mt-12 grid gap-4 md:grid-cols-4">
-            <div className="rounded-3xl border border-formula-orange/35 bg-formula-orange/10 p-6 shadow-glow">
+          <div className="mt-10 grid grid-cols-2 gap-3 md:mt-12 md:grid-cols-4 md:gap-4">
+            <div className="col-span-2 rounded-2xl border border-formula-orange/35 bg-formula-orange/10 p-4 shadow-glow sm:rounded-3xl sm:p-6 md:col-span-1">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Source</p>
-              <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 py-3">
+              <div className="mt-3 inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 py-3">
                 <span className="grid h-8 w-8 place-items-center rounded-full bg-white font-display text-lg font-black text-black">G</span>
                 <span className="text-sm font-black uppercase tracking-[0.16em] text-white">Google Reviews</span>
               </div>
-              <p className="mt-4 text-sm font-semibold leading-6 text-stone-300">Public Maps listing review excerpts, shown with names and dates as supplied.</p>
+              <p className="mt-3 hidden text-sm font-semibold leading-6 text-stone-300 sm:block">Public Maps listing review excerpts, shown with names and dates as supplied.</p>
             </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:rounded-3xl sm:p-6">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Average Shown</p>
-              <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">
+              <div className="mt-3 font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
                 <AnimatedCounter value={averageRating} decimals={1} />
               </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Average from the supplied reviews used here</p>
+              <p className="mt-2 text-xs font-semibold text-stone-400 sm:text-sm">From supplied reviews</p>
             </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:rounded-3xl sm:p-6">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Reviews Used</p>
-              <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">
+              <div className="mt-3 font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
                 <AnimatedCounter value={reviews.length} />
               </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Unique supplied public review excerpts</p>
+              <p className="mt-2 text-xs font-semibold text-stone-400 sm:text-sm">Real excerpts</p>
             </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+            <div className="col-span-2 rounded-2xl border border-white/10 bg-white/[0.035] p-4 sm:rounded-3xl sm:p-6 md:col-span-1">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Authenticity</p>
-              <div className="mt-3 flex items-center gap-2 font-display text-3xl font-black uppercase leading-none text-white">
-                <Award size={28} className="text-formula-orange" />
+              <div className="mt-3 flex items-center gap-2 font-display text-2xl font-black uppercase leading-none text-white sm:text-3xl">
+                <Award size={24} className="text-formula-orange" />
                 Verified excerpts
               </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Only the real review data provided is rendered</p>
+              <p className="mt-2 text-xs font-semibold text-stone-400 sm:text-sm">Only the real review data provided is rendered</p>
             </div>
           </div>
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.035] p-6">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-8 overflow-hidden rounded-3xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025))] shadow-deep-glow">
+            <div className="flex flex-col gap-4 border-b border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Why Members Love Us</p>
-                <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">Themes detected from real review text</h3>
-                <p className="mt-3 max-w-3xl text-sm font-semibold leading-7 text-stone-400">
-                  Members mention trainer support, a motivating atmosphere, clean facilities, equipment quality, Zumba energy, and practical guidance.
-                </p>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Member review slideshow</p>
+                <h3 className="mt-2 font-display text-3xl font-black uppercase leading-none text-white sm:text-4xl">
+                  One real review at a time.
+                </h3>
               </div>
-              <a
-                href={GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-formula-orange/45 bg-formula-orange/10 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-formula-orange/[0.16]"
-              >
-                Visit on Google Maps
-                <ArrowRight size={15} />
-              </a>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => goToReview(activeReviewIndex - 1)}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-black/35 text-white transition hover:border-formula-orange/60 hover:text-formula-orange"
+                  aria-label="Show previous Google review"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <p className="min-w-20 text-center text-xs font-black uppercase tracking-[0.18em] text-stone-400">
+                  {activeReviewIndex + 1} / {reviews.length}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => goToReview(activeReviewIndex + 1)}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-black/35 text-white transition hover:border-formula-orange/60 hover:text-formula-orange"
+                  aria-label="Show next Google review"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
             </div>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {detectedThemes.map((theme) => (
-                <div key={theme.label} className="rounded-2xl border border-white/10 bg-black/35 p-4">
-                  <Check className="text-formula-orange" size={20} />
-                  <p className="mt-3 text-sm font-black uppercase tracking-[0.14em] text-white">{theme.label}</p>
-                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-500">
-                    {theme.count} {theme.count === 1 ? 'review' : 'reviews'}
-                  </p>
+
+            <article className="grid gap-0 lg:grid-cols-[0.72fr_1.28fr]">
+              <div className="border-b border-white/10 bg-black/35 p-5 sm:p-7 lg:border-b-0 lg:border-r">
+                <div className="flex items-center gap-4">
+                  <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-formula-orange/45 bg-formula-orange/10 font-display text-2xl font-black uppercase text-formula-orange">
+                    {getInitials(activeReview.name)}
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-display text-2xl font-black uppercase leading-none text-white">{activeReview.name}</h4>
+                    <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">{activeReview.date}</p>
+                  </div>
                 </div>
+
+                <div className="mt-6">
+                  <ReviewStars rating={activeReview.rating} />
+                </div>
+
+                <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 py-3">
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-white font-display text-lg font-black text-black">G</span>
+                  <span className="text-xs font-black uppercase tracking-[0.16em] text-white">Public review excerpt</span>
+                </div>
+              </div>
+
+              <div className="flex min-h-[22rem] flex-col justify-between p-5 sm:p-7 lg:p-9">
+                <p className="font-display text-2xl font-black uppercase leading-tight text-white sm:text-4xl">
+                  "{activeReview.quote}"
+                </p>
+
+                {activeTags.length ? (
+                  <div className="mt-7 flex flex-wrap gap-2">
+                    {activeTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-formula-orange/30 bg-formula-orange/10 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-formula-orange"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            </article>
+
+            <div className="flex items-center justify-center gap-2 border-t border-white/10 px-5 py-5">
+              {reviews.map((review, index) => (
+                <button
+                  key={`${review.name}-dot`}
+                  type="button"
+                  onClick={() => goToReview(index)}
+                  className={`h-2.5 rounded-full transition ${
+                    index === activeReviewIndex ? 'w-8 bg-formula-orange' : 'w-2.5 bg-white/20 hover:bg-formula-orange/60'
+                  }`}
+                  aria-label={`Show review ${index + 1}`}
+                />
               ))}
             </div>
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((review, index) => {
-            const tags = extractReviewTags(review);
-            return (
-              <Reveal key={`${review.name}-${review.date}`} delay={(index % 3) * 80}>
-                <article className="group flex h-full flex-col rounded-3xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025))] p-6 transition duration-300 hover:-translate-y-1 hover:border-formula-orange/45 hover:shadow-glow">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex min-w-0 items-center gap-4">
-                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-formula-orange/45 bg-formula-orange/10 font-display text-2xl font-black uppercase text-formula-orange">
-                        {getInitials(review.name)}
-                      </div>
-                      <div className="min-w-0">
-                        <h3 className="font-display text-2xl font-black uppercase leading-none text-white">{review.name}</h3>
-                        <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">{review.date}</p>
-                      </div>
-                    </div>
-                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-stone-300">
-                      Google
-                    </span>
-                  </div>
-
-                  <div className="mt-5">
-                    <ReviewStars rating={review.rating} />
-                  </div>
-
-                  <p className="mt-5 grow text-base font-semibold leading-7 text-white sm:text-lg">"{review.quote}"</p>
-
-                  {tags.length ? (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-formula-orange/30 bg-formula-orange/10 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-formula-orange"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
-
-                  <p className="mt-6 border-t border-white/10 pt-4 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">
-                    Public review excerpt
-                  </p>
-                </article>
-              </Reveal>
-            );
-          })}
-        </div>
-
         <Reveal delay={180}>
-          <div className="mt-10 overflow-hidden rounded-3xl border border-formula-orange/30 bg-black/45">
+          <div className="mt-8 overflow-hidden rounded-3xl border border-formula-orange/30 bg-black/45 sm:mt-10">
             <div className="grid gap-0 lg:grid-cols-[1fr_0.82fr]">
               <div className="p-6 sm:p-8">
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Local trust signal</p>
