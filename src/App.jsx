@@ -231,13 +231,14 @@ const reviewThemeRules = [
   },
 ];
 
-function Reveal({ children, className = '', delay = 0 }) {
+function Reveal({ children, className = '', delay = 0, initialVisible = false }) {
   const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(initialVisible);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return undefined;
+    if (initialVisible) return undefined;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -251,7 +252,7 @@ function Reveal({ children, className = '', delay = 0 }) {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [initialVisible]);
 
   return (
     <div
@@ -476,17 +477,17 @@ function Hero() {
       <div className="absolute bottom-0 left-0 right-0 -z-10 h-44 bg-gradient-to-t from-formula-dark to-transparent" />
 
       <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
-        <Reveal>
+        <Reveal initialVisible>
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-formula-orange/35 bg-black/45 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-formula-orange backdrop-blur">
             <Flame size={15} />
             Hyderabad's premium transformation gym
           </div>
-          <h1 className="max-w-4xl font-display text-6xl font-black uppercase leading-[0.86] tracking-normal text-white sm:text-7xl lg:text-8xl xl:text-9xl">
+          <h1 className="max-w-4xl font-display text-6xl font-black uppercase leading-[0.86] tracking-normal text-white drop-shadow-[0_14px_34px_rgba(0,0,0,0.88)] sm:text-7xl lg:text-8xl xl:text-9xl">
             Build Strength.
             <span className="block text-formula-orange">Burn Fat.</span>
             Transform.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg font-medium leading-8 text-stone-300 sm:text-xl">
+          <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-stone-100 drop-shadow-[0_8px_24px_rgba(0,0,0,0.78)] sm:text-xl">
             Body Formula Fitness blends elite coaching, serious equipment, and accountable programming so every workout moves you closer to a body you are proud to live in.
           </p>
 
