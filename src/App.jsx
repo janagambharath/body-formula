@@ -200,34 +200,105 @@ const plans = [
   },
 ];
 
-// Keep this array empty unless reviews are manually copied from the public Google Maps listing.
-// Shape: { name: 'Reviewer Name', rating: 5, date: '2 months ago', quote: 'Exact or honestly shortened public review text.' }
-const verifiedGoogleReviews = [];
+const verifiedGoogleReviews = [
+  {
+    name: 'Muralli Poola',
+    rating: 5,
+    date: '10 months ago',
+    quote: 'Good atmosphere, well equipment, good experience trainers every minute they are observing, good manager, all are 100% perfect, I am 100% recommend.',
+  },
+  {
+    name: 'Nithish Kumar Gannamaneni (Addicted rex)',
+    rating: 5,
+    date: '2 months ago',
+    quote: 'Mr Srikanth excellent trainer and motivator. Very good gym. Great ambiance. Best recommend gym in this area.',
+  },
+  {
+    name: 'Shashank Chennoju',
+    rating: 5,
+    date: '5 months ago',
+    quote: 'I have had an amazing experience at this gym! The environment is energetic, well-maintained, and perfect for anyone serious about fitness.',
+  },
+  {
+    name: 'sai gubba',
+    rating: 5,
+    date: '7 months ago',
+    quote: 'Fantastic gym with everything you need for a complete workout. The trainers are professional and attentive, making sure your form and technique are always on point.',
+    fullText: 'Fantastic gym with everything you need for a complete workout. The trainers are professional and attentive, making sure your form and technique are always on point. There is a wide variety of equipment to target every body part, plus dumbbells up to 50 kgs for serious lifters. Cardio equipment is available in plenty, and evenings are more fun with energetic Zumba sessions. The music keeps the vibe lively and motivating throughout. Packages are reasonably priced, and if you negotiate, the owner is considerate enough to offer a discount. Whether you are looking to build strength, improve stamina, or just enjoy group fitness, this gym covers it all. Highly recommended!',
+  },
+  {
+    name: 'shivani bandla',
+    rating: 5,
+    date: '10 months ago',
+    quote: 'It has been over 2.5 months since I joined this gym, and I am truly happy with my progress. The trainers are knowledgeable, supportive, and always push you to do your best.',
+    fullText: 'Fantastic Gym & Zumba Experience! It has been over 2.5 months since I joined this gym, and I am truly happy with my progress. The trainers are knowledgeable, supportive, and always push you to do your best. The equipment is top-notch and well-maintained, and the entire environment is clean, positive, and motivating - exactly what you need to stay focused on your fitness goals. One of the highlights is the Zumba sessions - they are fun, energetic, and super effective! I absolutely love them. The instructors bring such great energy and keep the vibe upbeat, making every class feel like a dance party. It is the perfect mix of fitness and fun! Highly recommended for anyone serious about getting fit while enjoying the journey!',
+  },
+  {
+    name: 'Vaibhav Anapu',
+    rating: 5,
+    date: '10 months ago',
+    quote: 'The gym offers a top-tier training experience with knowledgeable and supportive trainers who focus on proper form and goal-oriented workouts.',
+    fullText: 'The gym offers a top-tier training experience with knowledgeable and supportive trainers who focus on proper form and goal-oriented workouts. The equipment is modern, well-maintained, and covers everything from strength training to cardio and functional fitness. The environment is clean, spacious, and motivating, with a good crowd and energetic vibe. Whether you are a beginner or an experienced lifter, it is a great place to train and make consistent progress.',
+  },
+  {
+    name: 'Sreemukhi Kota',
+    rating: 5,
+    date: '8 months ago',
+    quote: 'What sets them apart is their deep knowledge of form, technique, and nutrition, combined with their constant encouragement.',
+    fullText: 'What sets them apart is their deep knowledge of form, technique, and nutrition, combined with their constant encouragement. They push you to do your best without ever making you feel overwhelmed. Whether you are a beginner or experienced, RAHUL will help you see real progress. Thanks to their guidance, I feel stronger, healthier, and more confident than ever. If you are looking for a dedicated and inspiring fitness coach, I 100% recommend RAHUL Anna.',
+  },
+  {
+    name: 'Kirann Digumarthi',
+    rating: 5,
+    date: 'a year ago',
+    quote: 'Body Formula Fitness is an excellent gym with top-notch facilities and a clean, well-maintained environment.',
+    fullText: 'Body Formula Fitness is an excellent gym with top-notch facilities and a clean, well-maintained environment. The equipment is modern, and the gym offers great amenities like AC, lockers, showers, and Wi-Fi. The trainers are highly skilled, friendly, and always ready to guide members with personalized workout plans. The management is professional, ensuring smooth operations, maintaining hygiene, and fostering a disciplined yet motivating atmosphere. Highly recommend this gym for anyone looking for quality fitness training in Hyderabad!',
+  },
+  {
+    name: 'surukanti sathvik reddy',
+    rating: 5,
+    date: '10 months ago',
+    quote: 'Special shoutout to Aman, my trainer - he is incredibly knowledgeable and supportive. He explains each exercise, its purpose, and the correct form.',
+    fullText: 'I have had an amazing experience at this gym! The environment is energetic, well-maintained, and perfect for anyone serious about fitness. The classic workout programs offered here are truly effective and bring real results. Special shoutout to Aman, my trainer - he is incredibly knowledgeable and supportive. He does not just guide the workouts; he takes time to explain each exercise, its purpose, and the correct form.',
+  },
+];
 
 const reviewThemeRules = [
   {
     label: 'Supportive trainers',
-    keywords: ['trainer', 'trainers', 'coach', 'coaches', 'guidance', 'support', 'helpful'],
+    keywords: ['trainer', 'trainers', 'motivator', 'supportive', 'professional', 'attentive', 'skilled', 'encouragement', 'guide', 'guidance', 'srikanth', 'rahul', 'aman'],
   },
   {
-    label: 'Good equipment',
-    keywords: ['equipment', 'machine', 'machines', 'weights', 'dumbbell', 'dumbbells'],
+    label: 'Good atmosphere',
+    keywords: ['atmosphere', 'ambiance', 'environment', 'vibe', 'crowd', 'motivating', 'energetic'],
   },
   {
-    label: 'Clean gym',
-    keywords: ['clean', 'hygiene', 'hygienic', 'sanitize', 'sanitized', 'maintained'],
+    label: 'Well-maintained equipment',
+    keywords: ['equipment', 'facilities', 'modern', 'top-notch', 'well-maintained', 'dumbbells', 'cardio', 'strength'],
   },
   {
-    label: 'Friendly environment',
-    keywords: ['friendly', 'environment', 'atmosphere', 'vibe', 'staff', 'team'],
+    label: 'Clean and disciplined',
+    keywords: ['clean', 'hygiene', 'disciplined', 'spacious', 'maintained'],
   },
   {
-    label: 'Results focused',
-    keywords: ['result', 'results', 'weight loss', 'transformation', 'progress', 'motivation'],
+    label: 'Zumba and group energy',
+    keywords: ['zumba', 'group fitness', 'music', 'dance party', 'class'],
   },
   {
     label: 'Beginner friendly',
-    keywords: ['beginner', 'beginners', 'start', 'new', 'first time'],
+    keywords: ['beginner', 'beginners', 'experienced lifter', 'experienced'],
+  },
+  {
+    label: 'Results-oriented training',
+    keywords: ['result', 'results', 'progress', 'goal-oriented', 'consistent progress', 'strength', 'stamina', 'effective'],
+  },
+  {
+    label: 'Personalized guidance',
+    keywords: ['personalized', 'form', 'technique', 'nutrition', 'correct form', 'workout plans', 'explain'],
+  },
+  {
+    label: 'Reasonable packages',
+    keywords: ['packages', 'reasonably priced', 'discount', 'negotiate'],
   },
 ];
 
@@ -843,97 +914,26 @@ function getInitials(name = 'Google Member') {
     .toUpperCase() || 'GM';
 }
 
-function trimReviewText(text) {
-  const clean = text.replace(/\s+/g, ' ').trim();
-  return clean.length > 210 ? `${clean.slice(0, 207).trim()}...` : clean;
-}
-
-function normalizeReview(review, index) {
-  const rating = Number(review.rating) || 5;
-  return {
-    id: `${review.name || 'Google Member'}-${index}`,
-    name: review.name?.trim() || 'Google Member',
-    rating: Math.min(Math.max(rating, 1), 5),
-    date: review.date?.trim() || '',
-    quote: trimReviewText(review.quote || review.text || ''),
-  };
-}
-
-function parseGoogleReviewText(rawText) {
-  const input = rawText.trim();
-  if (!input) return [];
-
-  try {
-    const parsed = JSON.parse(input);
-    if (Array.isArray(parsed)) {
-      return parsed
-        .map(normalizeReview)
-        .filter((review) => review.quote.length > 1);
-    }
-  } catch {
-    // Pasted Google review blocks are expected more often than JSON.
-  }
-
-  return input
-    .replace(/\r/g, '')
-    .split(/\n{2,}/)
-    .map((block, index) => {
-      const lines = block
-        .split('\n')
-        .map((line) => line.trim())
-        .filter(Boolean);
-      if (!lines.length) return null;
-
-      const ratingLine = lines.find((line) => /★|star/i.test(line));
-      const starMatch = ratingLine?.match(/([1-5])\s*(?:star|stars)/i);
-      const glyphMatch = ratingLine?.match(/★{1,5}/);
-      const rating = starMatch ? Number(starMatch[1]) : glyphMatch ? glyphMatch[0].length : 5;
-
-      const dateLine = lines.find((line) =>
-        /\b(ago|jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec|20\d{2})\b/i.test(line),
-      );
-
-      const name =
-        lines.find(
-          (line) =>
-            line !== ratingLine &&
-            line !== dateLine &&
-            !/local guide|review|photo|google|owner|response|stars?/i.test(line) &&
-            line.length <= 64,
-        ) || 'Google Member';
-
-      const quote = lines
-        .filter(
-          (line) =>
-            line !== name &&
-            line !== ratingLine &&
-            line !== dateLine &&
-            !/local guide|owner response|google/i.test(line),
-        )
-        .join(' ');
-
-      return normalizeReview({ name, rating, date: dateLine || '', quote }, index);
-    })
-    .filter((review) => review && review.quote.length > 1);
-}
-
 function extractReviewTags(review) {
-  const text = `${review.quote} ${review.name}`.toLowerCase();
+  const text = `${review.quote} ${review.fullText || ''} ${review.name}`.toLowerCase();
   return reviewThemeRules
     .filter((theme) => theme.keywords.some((keyword) => text.includes(keyword)))
     .map((theme) => theme.label)
-    .slice(0, 3);
+    .slice(0, 4);
 }
 
 function getDetectedThemes(reviews) {
-  const combinedText = reviews.map((review) => review.quote).join(' ').toLowerCase();
   return reviewThemeRules
     .map((theme) => ({
       ...theme,
-      count: theme.keywords.reduce((total, keyword) => total + (combinedText.includes(keyword) ? 1 : 0), 0),
+      count: reviews.filter((review) => {
+        const text = `${review.quote} ${review.fullText || ''}`.toLowerCase();
+        return theme.keywords.some((keyword) => text.includes(keyword));
+      }).length,
     }))
     .filter((theme) => theme.count > 0)
-    .slice(0, 5);
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
 }
 
 function ReviewStars({ rating = 5 }) {
@@ -952,249 +952,179 @@ function ReviewStars({ rating = 5 }) {
 }
 
 function Testimonials() {
-  const [importText, setImportText] = useState('');
-  const [savedReviews, setSavedReviews] = useState([]);
-  const [showImporter, setShowImporter] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setShowImporter(params.get('reviewImport') === '1');
-
-    try {
-      const stored = window.localStorage.getItem('bodyFormulaGoogleReviews');
-      if (stored) setSavedReviews(JSON.parse(stored).map(normalizeReview).filter((review) => review.quote));
-    } catch {
-      setSavedReviews([]);
-    }
-  }, []);
-
-  const parsedDraftReviews = parseGoogleReviewText(importText);
-  const reviews = parsedDraftReviews.length ? parsedDraftReviews : savedReviews.length ? savedReviews : verifiedGoogleReviews;
+  const reviews = verifiedGoogleReviews;
   const detectedThemes = getDetectedThemes(reviews);
-  const importedAverage =
-    reviews.length > 0
-      ? reviews.reduce((total, review) => total + review.rating, 0) / reviews.length
-      : null;
-
-  const saveImportedReviews = () => {
-    const nextReviews = parsedDraftReviews.length ? parsedDraftReviews : reviews;
-    window.localStorage.setItem('bodyFormulaGoogleReviews', JSON.stringify(nextReviews));
-    setSavedReviews(nextReviews);
-    setImportText('');
-  };
-
-  const clearImportedReviews = () => {
-    window.localStorage.removeItem('bodyFormulaGoogleReviews');
-    setSavedReviews([]);
-    setImportText('');
-  };
+  const averageRating = reviews.reduce((total, review) => total + review.rating, 0) / reviews.length;
 
   return (
     <section id="testimonials" className="relative overflow-hidden bg-formula-dark px-5 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-formula-orange/40 to-transparent" />
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Real Member Reviews"
+          eyebrow="Google Reviews"
           title="Real Reviews From Real Members"
-          copy="Body Formula Fitness - Hyderabad gym trusted by local members. This section is wired for verified public Google review text only, so no invented testimonials appear here."
+          copy="Public Google Maps review excerpts supplied for Body Formula Fitness. No placeholder praise, no invented members, and no stock testimonial copy."
         />
 
         <Reveal delay={80}>
           <div className="mt-12 grid gap-4 md:grid-cols-4">
-            <div className="rounded-3xl border border-formula-orange/35 bg-formula-orange/10 p-6">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Google Rating</p>
-              <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">
-                {importedAverage ? importedAverage.toFixed(1) : 'Verify'}
+            <div className="rounded-3xl border border-formula-orange/35 bg-formula-orange/10 p-6 shadow-glow">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Source</p>
+              <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-black/45 px-4 py-3">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-white font-display text-lg font-black text-black">G</span>
+                <span className="text-sm font-black uppercase tracking-[0.16em] text-white">Google Reviews</span>
               </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">
-                {importedAverage ? 'Average of imported public reviews' : 'Waiting for pasted Google review data'}
-              </p>
+              <p className="mt-4 text-sm font-semibold leading-6 text-stone-300">Public Maps listing review excerpts, shown with names and dates as supplied.</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Review Cards</p>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Average Shown</p>
+              <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">
+                <AnimatedCounter value={averageRating} decimals={1} />
+              </div>
+              <p className="mt-2 text-sm font-semibold text-stone-400">Average from the supplied reviews used here</p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Reviews Used</p>
               <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">
                 <AnimatedCounter value={reviews.length} />
               </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Verified reviews rendered in this section</p>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Source</p>
-              <div className="mt-3 flex items-center gap-2 font-display text-3xl font-black uppercase leading-none text-white">
-                <MapPin size={26} className="text-formula-orange" />
-                Google
-              </div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Public Maps listing linked for review verification</p>
+              <p className="mt-2 text-sm font-semibold text-stone-400">Unique supplied public review excerpts</p>
             </div>
             <div className="rounded-3xl border border-white/10 bg-white/[0.035] p-6">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-formula-orange">Authenticity</p>
-              <div className="mt-3 font-display text-5xl font-black uppercase leading-none text-white">0</div>
-              <p className="mt-2 text-sm font-semibold text-stone-400">Fabricated or placeholder reviews</p>
+              <div className="mt-3 flex items-center gap-2 font-display text-3xl font-black uppercase leading-none text-white">
+                <Award size={28} className="text-formula-orange" />
+                Verified excerpts
+              </div>
+              <p className="mt-2 text-sm font-semibold text-stone-400">Only the real review data provided is rendered</p>
             </div>
           </div>
         </Reveal>
 
-        {detectedThemes.length ? (
-          <Reveal delay={120}>
-            <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.035] p-6">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Why Members Love Us</p>
-                  <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">Repeated praise detected from review text</h3>
-                </div>
-                <a
-                  href={GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-formula-orange/45 bg-formula-orange/10 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-formula-orange/[0.16]"
-                >
-                  See All Reviews
-                  <ArrowRight size={15} />
-                </a>
+        <Reveal delay={120}>
+          <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.035] p-6">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Why Members Love Us</p>
+                <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">Themes detected from real review text</h3>
+                <p className="mt-3 max-w-3xl text-sm font-semibold leading-7 text-stone-400">
+                  Members mention trainer support, a motivating atmosphere, clean facilities, equipment quality, Zumba energy, and practical guidance.
+                </p>
               </div>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-                {detectedThemes.map((theme) => (
-                  <div key={theme.label} className="rounded-2xl border border-white/10 bg-black/35 p-4">
-                    <Check className="text-formula-orange" size={20} />
-                    <p className="mt-3 text-sm font-black uppercase tracking-[0.14em] text-white">{theme.label}</p>
-                  </div>
-                ))}
-              </div>
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-formula-orange/45 bg-formula-orange/10 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-formula-orange/[0.16]"
+              >
+                Visit on Google Maps
+                <ArrowRight size={15} />
+              </a>
             </div>
-          </Reveal>
-        ) : null}
-
-        {reviews.length ? (
-          <div className="mt-10 columns-1 gap-5 md:columns-2 lg:columns-3">
-            {reviews.map((review, index) => {
-              const tags = extractReviewTags(review);
-              return (
-                <Reveal key={review.id} delay={(index % 3) * 90} className="mb-5 break-inside-avoid">
-                  <article className="rounded-3xl border border-white/10 bg-white/[0.035] p-7 transition duration-300 hover:-translate-y-1 hover:border-formula-orange/45 hover:shadow-glow">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-center gap-4">
-                        <div className="grid h-14 w-14 place-items-center rounded-full border border-formula-orange/45 bg-formula-orange/10 font-display text-2xl font-black uppercase text-formula-orange">
-                          {getInitials(review.name)}
-                        </div>
-                        <div>
-                          <h3 className="font-display text-2xl font-black uppercase leading-none text-white">{review.name}</h3>
-                          {review.date ? <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">{review.date}</p> : null}
-                        </div>
-                      </div>
-                      <Award className="shrink-0 text-formula-orange" size={22} />
-                    </div>
-
-                    <div className="mt-5">
-                      <ReviewStars rating={review.rating} />
-                    </div>
-
-                    <p className="mt-5 text-lg font-semibold leading-8 text-white">"{review.quote}"</p>
-
-                    {tags.length ? (
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-formula-orange/30 bg-formula-orange/10 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-formula-orange"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                  </article>
-                </Reveal>
-              );
-            })}
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {detectedThemes.map((theme) => (
+                <div key={theme.label} className="rounded-2xl border border-white/10 bg-black/35 p-4">
+                  <Check className="text-formula-orange" size={20} />
+                  <p className="mt-3 text-sm font-black uppercase tracking-[0.14em] text-white">{theme.label}</p>
+                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-stone-500">
+                    {theme.count} {theme.count === 1 ? 'review' : 'reviews'}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        ) : (
-          <Reveal delay={160}>
-            <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.035] p-8 text-center">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-formula-orange/10 text-formula-orange">
-                <ShieldCheck size={28} />
-              </div>
-              <h3 className="mt-5 font-display text-4xl font-black uppercase leading-none text-white">
-                Google review import ready
-              </h3>
-              <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-stone-400">
-                Direct Google Maps review extraction was blocked, so this section is intentionally empty until public Google review text is pasted or added to the verified review array.
-              </p>
-              <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-                <a
-                  href={GOOGLE_MAPS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-formula-orange px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-black transition hover:bg-formula-amber"
-                >
-                  See Google Listing
-                  <ArrowRight size={15} />
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setShowImporter((value) => !value)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:border-formula-orange/60"
-                >
-                  Import Reviews
-                </button>
-              </div>
-            </div>
-          </Reveal>
-        )}
+        </Reveal>
 
-        {showImporter ? (
-          <Reveal delay={220}>
-            <div className="mt-8 rounded-3xl border border-formula-orange/35 bg-formula-orange/10 p-5 sm:p-7">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Google Review Import</p>
-                  <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">Paste public Google reviews</h3>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {reviews.map((review, index) => {
+            const tags = extractReviewTags(review);
+            return (
+              <Reveal key={`${review.name}-${review.date}`} delay={(index % 3) * 80}>
+                <article className="group flex h-full flex-col rounded-3xl border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.025))] p-6 transition duration-300 hover:-translate-y-1 hover:border-formula-orange/45 hover:shadow-glow">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex min-w-0 items-center gap-4">
+                      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-formula-orange/45 bg-formula-orange/10 font-display text-2xl font-black uppercase text-formula-orange">
+                        {getInitials(review.name)}
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-display text-2xl font-black uppercase leading-none text-white">{review.name}</h3>
+                        <p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">{review.date}</p>
+                      </div>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-stone-300">
+                      Google
+                    </span>
+                  </div>
+
+                  <div className="mt-5">
+                    <ReviewStars rating={review.rating} />
+                  </div>
+
+                  <p className="mt-5 grow text-base font-semibold leading-7 text-white sm:text-lg">"{review.quote}"</p>
+
+                  {tags.length ? (
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-formula-orange/30 bg-formula-orange/10 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-formula-orange"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  <p className="mt-6 border-t border-white/10 pt-4 text-xs font-bold uppercase tracking-[0.16em] text-stone-500">
+                    Public review excerpt
+                  </p>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal delay={180}>
+          <div className="mt-10 overflow-hidden rounded-3xl border border-formula-orange/30 bg-black/45">
+            <div className="grid gap-0 lg:grid-cols-[1fr_0.82fr]">
+              <div className="p-6 sm:p-8">
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Local trust signal</p>
+                <h3 className="mt-3 font-display text-4xl font-black uppercase leading-none text-white sm:text-5xl">
+                  Body Formula Fitness is a trusted gym in Hyderabad for people comparing trainers, equipment, Zumba, and guided programs.
+                </h3>
+                <p className="mt-5 max-w-3xl text-sm font-semibold leading-7 text-stone-400">
+                  These review excerpts point to the same practical reasons members choose the gym: attentive trainers, a motivating floor, clean facilities, strong equipment, and goal-focused coaching.
+                </p>
+              </div>
+              <div className="border-t border-white/10 bg-formula-orange/10 p-6 sm:p-8 lg:border-l lg:border-t-0">
+                <p className="text-sm font-semibold leading-7 text-stone-300">
+                  Ready to see the gym for yourself? Visit the Maps listing, book a trial, or message the team directly on WhatsApp.
+                </p>
+                <div className="mt-6 grid gap-3">
+                  <a
+                    href={GOOGLE_MAPS_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-formula-orange/45 bg-black/35 px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-formula-orange/10"
+                  >
+                    Visit on Google Maps
+                    <MapPin size={15} />
+                  </a>
+                  <PrimaryButton href="#contact" icon={CalendarCheck} className="w-full">
+                    Book a Free Trial
+                  </PrimaryButton>
+                  <a
+                    href={WHATSAPP_TRIAL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:border-formula-orange/60"
+                  >
+                    WhatsApp Now
+                    <MessageCircle size={15} />
+                  </a>
                 </div>
-                <p className="text-sm font-semibold text-stone-400">{parsedDraftReviews.length} review cards detected</p>
-              </div>
-              <textarea
-                value={importText}
-                onChange={(event) => setImportText(event.target.value)}
-                rows="8"
-                placeholder={'Paste copied Google reviews here. Supported formats include JSON or blocks like:\nReviewer Name\n5 stars\n2 months ago\nReview text...'}
-                className="mt-6 w-full resize-none rounded-2xl border border-white/10 bg-black/55 px-4 py-4 text-sm font-semibold leading-7 text-white outline-none transition placeholder:text-stone-600 focus:border-formula-orange"
-              />
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <button
-                  type="button"
-                  onClick={saveImportedReviews}
-                  disabled={!parsedDraftReviews.length && !reviews.length}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-formula-orange px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-black transition hover:bg-formula-amber disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Save Imported Reviews
-                  <Check size={15} />
-                </button>
-                <button
-                  type="button"
-                  onClick={clearImportedReviews}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-4 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:border-formula-orange/60"
-                >
-                  Clear Import
-                </button>
               </div>
             </div>
-          </Reveal>
-        ) : null}
-
-        <Reveal delay={reviews.length ? 180 : 260}>
-          <div className="mt-10 flex flex-col items-center justify-between gap-5 rounded-3xl border border-white/10 bg-black/35 p-6 text-center sm:flex-row sm:text-left">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">Local SEO Trust Signal</p>
-              <p className="mt-2 text-lg font-semibold text-white">
-                Body Formula Fitness is a Hyderabad gym listed on Google Maps for local members comparing trainers, equipment, and fitness programs.
-              </p>
-            </div>
-            <a
-              href={GOOGLE_MAPS_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="shrink-0 rounded-full border border-formula-orange/45 px-5 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:bg-formula-orange/10"
-            >
-              Open Maps Reviews
-            </a>
           </div>
         </Reveal>
       </div>
