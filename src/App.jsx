@@ -272,12 +272,19 @@ function AnimatedCounter({ value, prefix = '', suffix = '', decimals = 0, classN
   useEffect(() => {
     const node = ref.current;
     if (!node) return undefined;
+    if (typeof IntersectionObserver === 'undefined') {
+      setDisplay(value);
+      return undefined;
+    }
 
     let frameId = 0;
+    const fallbackId = window.setTimeout(() => setDisplay(value), 2200);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
 
+        window.clearTimeout(fallbackId);
+        setDisplay(0);
         const start = performance.now();
         const duration = 1500;
 
@@ -298,6 +305,7 @@ function AnimatedCounter({ value, prefix = '', suffix = '', decimals = 0, classN
     return () => {
       observer.disconnect();
       cancelAnimationFrame(frameId);
+      window.clearTimeout(fallbackId);
     };
   }, [value]);
 
