@@ -18,8 +18,13 @@ import {
   TrendingUp,
   Users,
   X,
-  Zap,
 } from 'lucide-react';
+import placeExterior from './assets/body-formula/place-exterior.jpeg';
+import placeFloor01 from './assets/body-formula/place-floor-01.jpeg';
+import placeFloor02 from './assets/body-formula/place-floor-02.jpeg';
+import placeFloor03 from './assets/body-formula/place-floor-03.jpeg';
+import placeFloor04 from './assets/body-formula/place-floor-04.jpeg';
+import placeMember01 from './assets/body-formula/place-member-01.jpeg';
 
 const PHONE_RAW = '919999999999';
 const PHONE_DISPLAY = '+91 99999 99999';
@@ -45,62 +50,62 @@ const programs = [
   {
     title: 'Strength Training',
     description: 'Build stronger lifts, cleaner form, and measurable weekly progress.',
-    image: pexels(24809804, 900, 1200),
-    alt: 'Athlete lifting weights during a strength training session',
+    image: pexels(13534122, 900, 1200),
+    alt: 'Indian woman powerlifting inside a gym in Ahmedabad',
   },
   {
     title: 'Fat Loss Program',
     description: 'Torch fat with coached training, cardio blocks, and habit tracking.',
-    image: pexels(6551438, 900, 1200),
-    alt: 'Trainer coaching a member during a fat loss cardio session',
+    image: pexels(8732362, 900, 1200),
+    alt: 'Indian man doing battle rope conditioning in a gym',
   },
   {
     title: 'Muscle Building',
     description: 'Hypertrophy plans built around volume, nutrition, and recovery.',
-    image: pexels(18060056, 900, 1200),
-    alt: 'Woman using a cable machine for muscle building',
+    image: pexels(11800270, 900, 1200),
+    alt: 'Indian man training chest on a cable machine',
   },
   {
     title: 'Functional Training',
     description: 'Move better, perform harder, and build athletic everyday strength.',
-    image: pexels(14085371, 900, 1200),
-    alt: 'Woman training with a medicine ball in a gym',
+    image: pexels(23880157, 900, 1200),
+    alt: 'Indian man tire flipping during functional training',
   },
   {
     title: 'Personal Training',
     description: 'One-on-one coaching, custom programming, and real accountability.',
-    image: pexels(4854267, 900, 1200),
-    alt: 'Personal trainer helping a woman train in a gym',
+    image: placeMember01,
+    alt: 'Body Formula Fitness member training inside the gym',
   },
   {
     title: 'Beginner Fitness',
     description: 'Start confidently with safe technique, simple plans, and support.',
-    image: pexels(6551097, 900, 1200),
-    alt: 'Trainer guiding a beginner on an indoor cycling workout',
+    image: pexels(14989453, 900, 1200),
+    alt: 'Indian group fitness class practicing guided movement',
   },
   {
     title: 'Cardio Conditioning',
     description: 'Improve stamina, heart health, and energy without random workouts.',
-    image: pexels(6551079, 900, 1200),
-    alt: 'Trainer guiding a rowing machine cardio conditioning session',
+    image: pexels(12709356, 900, 1200),
+    alt: 'Indian men working out inside a gym in Chandigarh',
   },
   {
     title: 'Weight Gain Program',
     description: 'Lean bulk with progressive weights, food structure, and recovery.',
-    image: pexels(19025674, 900, 1200),
-    alt: 'Row of dumbbells in a weight training gym',
+    image: pexels(5799855, 900, 1200),
+    alt: 'Indian man training legs on a gym machine',
   },
   {
     title: 'Women Fitness',
     description: 'Strength, toning, confidence, and coaching in a welcoming space.',
-    image: pexels(14623629, 900, 1200),
-    alt: 'Strong woman doing a pull up inside a gym',
+    image: pexels(13534122, 900, 1200),
+    alt: 'Indian woman lifting a barbell inside a gym',
   },
   {
     title: 'Mobility & Stretching',
     description: 'Unlock range, reduce stiffness, and recover faster between sessions.',
-    image: pexels(13993020, 900, 1200),
-    alt: 'Woman stretching inside a gym with dumbbells nearby',
+    image: pexels(14989453, 900, 1200),
+    alt: 'Indian fitness class stretching in a studio',
   },
 ];
 
@@ -136,36 +141,35 @@ const resultStats = [
 
 const trainers = [
   {
-    name: 'Arjun Reddy',
-    specialty: 'Strength & Muscle Gain',
-    experience: '8 years',
-    image: pexels(5878697, 900, 1100),
-    alt: 'Professional male fitness trainer standing in a gym',
+    role: 'Strength Coaching Team',
+    specialty: 'Form correction, progressive overload, muscle gain',
+    label: 'Body Formula Coach',
+    image: placeMember01,
+    alt: 'Body Formula Fitness coach inside the gym',
   },
   {
-    name: 'Maya Kapoor',
-    specialty: 'Fat Loss & Women Fitness',
-    experience: '6 years',
-    image: pexels(20418608, 900, 1100),
-    alt: 'Professional woman fitness trainer posing inside a gym',
+    role: 'Transformation Coaching',
+    specialty: 'Fat loss, habit tracking, beginner confidence',
+    label: 'Goal-Based Guidance',
+    image: pexels(13534122, 900, 1100),
+    alt: 'Indian woman strength training in a gym',
   },
   {
-    name: 'Sameer Khan',
-    specialty: 'Functional Conditioning',
-    experience: '7 years',
-    image: pexels(6456331, 900, 1100),
-    alt: 'Personal trainer supporting a client during gym training',
+    role: 'Floor Support Team',
+    specialty: 'Functional training, cardio conditioning, mobility',
+    label: 'On-Floor Support',
+    image: pexels(12709356, 900, 1100),
+    alt: 'Indian gym members training with coach support',
   },
 ];
 
 const gallery = [
-  { image: pexels(29392549, 1200, 900), alt: 'Modern gym interior with dumbbell rack and staircase', className: 'lg:col-span-2 lg:row-span-2' },
-  { image: pexels(20418612, 900, 700), alt: 'Premium row of dumbbells in a modern gym', className: '' },
-  { image: pexels(14636326, 900, 700), alt: 'Modern gym machines and training floor', className: '' },
-  { image: pexels(32610333, 900, 700), alt: 'Functional training area with kettlebells and equipment', className: 'lg:row-span-2' },
-  { image: pexels(17227606, 1000, 800), alt: 'Bright gym interior with cardio and strength equipment', className: '' },
-  { image: pexels(14289784, 900, 700), alt: 'Heavy dumbbells on a rack in a dim gym', className: '' },
-  { image: pexels(35215412, 1200, 800), alt: 'Modern indoor gym with treadmills and bikes', className: 'lg:col-span-2' },
+  { image: placeFloor02, alt: 'Body Formula Fitness premium gym floor with modern machines', className: 'lg:col-span-2 lg:row-span-2' },
+  { image: placeExterior, alt: 'Body Formula Fitness exterior sign and glass frontage', className: '' },
+  { image: placeMember01, alt: 'Body Formula Fitness member inside the gym', className: '' },
+  { image: placeFloor03, alt: 'Body Formula Fitness dumbbell and bench zone', className: 'lg:row-span-2' },
+  { image: placeFloor01, alt: 'Body Formula Fitness cardio and equipment zone', className: '' },
+  { image: placeFloor04, alt: 'Body Formula Fitness strength floor with red accent wall', className: 'lg:col-span-2' },
 ];
 
 const plans = [
@@ -463,8 +467,8 @@ function Hero() {
   return (
     <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
       <img
-        src={pexels(29392549, 1800, 1200)}
-        alt="Cinematic premium gym interior with weights and training floor"
+        src={placeFloor04}
+        alt="Body Formula Fitness strength floor with benches and machines"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
         fetchPriority="high"
       />
@@ -512,15 +516,15 @@ function Hero() {
           <div className="ml-auto max-w-md rounded-[2rem] border border-white/[0.12] bg-black/45 p-5 shadow-deep-glow backdrop-blur-xl">
             <div className="relative overflow-hidden rounded-[1.55rem] border border-white/10">
               <img
-                src={pexels(24809804, 900, 1100)}
-                alt="Athlete performing a premium weight training workout"
+                src={placeExterior}
+                alt="Body Formula Fitness exterior signage"
                 className="h-[34rem] w-full object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-formula-orange">Transformation Sprint</p>
-                <p className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">90 days. Real change.</p>
+                <p className="text-xs font-extrabold uppercase tracking-[0.24em] text-formula-orange">Actual Body Formula Location</p>
+                <p className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">Premium floor. Real place.</p>
               </div>
             </div>
           </div>
@@ -539,24 +543,24 @@ function About() {
           <div className="grid grid-cols-12 grid-rows-6 gap-4">
             <div className="col-span-8 row-span-4 overflow-hidden rounded-[1.75rem] border border-white/10 shadow-deep-glow">
               <img
-                src={pexels(29526372, 1100, 1000)}
-                alt="Modern gym interior with weight training equipment"
+                src={placeFloor02}
+                alt="Body Formula Fitness gym interior with strength machines"
                 className="h-full min-h-[22rem] w-full object-cover transition duration-700 hover:scale-105"
                 loading="lazy"
               />
             </div>
             <div className="col-span-4 row-span-3 overflow-hidden rounded-[1.35rem] border border-white/10">
               <img
-                src={pexels(20418612, 700, 900)}
-                alt="Premium dumbbell rack inside a gym"
+                src={placeFloor03}
+                alt="Body Formula Fitness dumbbell rack and bench zone"
                 className="h-full w-full object-cover transition duration-700 hover:scale-105"
                 loading="lazy"
               />
             </div>
             <div className="col-span-5 row-span-2 overflow-hidden rounded-[1.35rem] border border-white/10">
               <img
-                src={pexels(35215412, 900, 600)}
-                alt="Modern cardio section with treadmills and bikes"
+                src={placeFloor01}
+                alt="Body Formula Fitness cardio and equipment zone"
                 className="h-full w-full object-cover transition duration-700 hover:scale-105"
                 loading="lazy"
               />
@@ -681,13 +685,13 @@ function Trainers() {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           eyebrow="Elite Coaches"
-          title="Trainers who turn effort into results."
-          copy="Professional, attentive, and commercially serious about your progress. Every coach is trained to make your plan clearer and your standards higher."
+          title="Coaching without fake celebrity names."
+          copy="Meet the Body Formula coaching system: attentive floor support, form correction, and goal-based guidance without invented trainer personas."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {trainers.map((trainer, index) => (
-            <Reveal key={trainer.name} delay={index * 120}>
+            <Reveal key={trainer.role} delay={index * 120}>
               <article className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] transition duration-500 hover:-translate-y-2 hover:border-formula-orange/55 hover:shadow-glow">
                 <div className="relative h-[31rem] overflow-hidden">
                   <img
@@ -698,14 +702,14 @@ function Trainers() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">{trainer.experience} experience</p>
-                    <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">{trainer.name}</h3>
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-formula-orange">{trainer.label}</p>
+                    <h3 className="mt-2 font-display text-4xl font-black uppercase leading-none text-white">{trainer.role}</h3>
                     <p className="mt-2 text-sm font-bold uppercase tracking-[0.15em] text-stone-300">{trainer.specialty}</p>
                     <a
                       href="#contact"
                       className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-white transition hover:border-formula-orange/60 hover:bg-formula-orange/15"
                     >
-                      Train With Me
+                      Book Coaching
                       <ArrowRight size={15} />
                     </a>
                   </div>
@@ -1320,8 +1324,8 @@ function Contact() {
           <div className="h-full min-h-[34rem] overflow-hidden rounded-3xl border border-white/10 bg-white/[0.035] shadow-deep-glow">
             <div className="relative h-72 overflow-hidden">
               <img
-                src={pexels(35215421, 1200, 700)}
-                alt="Premium cardio equipment inside a modern gym"
+                src={placeExterior}
+                alt="Body Formula Fitness exterior and signage in Hyderabad"
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
