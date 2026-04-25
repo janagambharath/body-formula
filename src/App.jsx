@@ -903,6 +903,14 @@ function Testimonials() {
   const activeTags = extractReviewTags(activeReview);
   const goToReview = (index) => setActiveReviewIndex((index + reviews.length) % reviews.length);
 
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveReviewIndex((index) => (index + 1) % reviews.length);
+    }, 4500);
+
+    return () => window.clearInterval(intervalId);
+  }, [reviews.length]);
+
   return (
     <section id="testimonials" className="relative overflow-hidden bg-formula-dark px-5 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-formula-orange/40 to-transparent" />
@@ -980,7 +988,7 @@ function Testimonials() {
               </div>
             </div>
 
-            <article className="grid gap-0 lg:grid-cols-[0.72fr_1.28fr]">
+            <article className="grid gap-0 lg:grid-cols-[0.72fr_1.28fr]" aria-live="polite">
               <div className="border-b border-white/10 bg-black/35 p-5 sm:p-7 lg:border-b-0 lg:border-r">
                 <div className="flex items-center gap-4">
                   <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-formula-orange/45 bg-formula-orange/10 font-display text-2xl font-black uppercase text-formula-orange">
