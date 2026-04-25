@@ -521,7 +521,7 @@ function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={180} className="hidden lg:block">
+        <Reveal initialVisible delay={180} className="hidden lg:block">
           <div className="ml-auto max-w-md rounded-[2rem] border border-white/[0.12] bg-black/45 p-5 shadow-deep-glow backdrop-blur-xl">
             <div className="relative overflow-hidden rounded-[1.55rem] border border-white/10">
               <img
