@@ -466,7 +466,7 @@ function Hero() {
   ];
 
   return (
-    <section id="home" className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
+    <section id="home" className="relative isolate flex min-h-[92vh] items-center overflow-hidden pt-20">
       <img
         src={placeFloor04}
         alt="Body Formula Fitness strength floor with benches and machines"
@@ -476,35 +476,35 @@ function Hero() {
       <div className="hero-vignette absolute inset-0 -z-10" />
       <div className="absolute bottom-0 left-0 right-0 -z-10 h-44 bg-gradient-to-t from-formula-dark to-transparent" />
 
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 py-12 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8 lg:py-14">
         <Reveal initialVisible>
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-formula-orange/35 bg-black/45 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-formula-orange backdrop-blur">
             <Flame size={15} />
             Hyderabad's premium transformation gym
           </div>
-          <h1 className="max-w-4xl font-display text-6xl font-black uppercase leading-[0.86] tracking-normal text-white drop-shadow-[0_14px_34px_rgba(0,0,0,0.88)] sm:text-7xl lg:text-8xl xl:text-9xl">
+          <h1 className="max-w-4xl font-display text-5xl font-black uppercase leading-[0.88] tracking-normal text-white drop-shadow-[0_14px_34px_rgba(0,0,0,0.88)] sm:text-6xl lg:text-7xl xl:text-8xl">
             Build Strength.
             <span className="block text-formula-orange">Burn Fat.</span>
             Transform.
           </h1>
-          <p className="mt-7 max-w-2xl text-lg font-semibold leading-8 text-stone-100 drop-shadow-[0_8px_24px_rgba(0,0,0,0.78)] sm:text-xl">
+          <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-stone-100 drop-shadow-[0_8px_24px_rgba(0,0,0,0.78)] sm:text-lg">
             Body Formula Fitness blends elite coaching, serious equipment, and accountable programming so every workout moves you closer to a body you are proud to live in.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-7 flex flex-col gap-4 sm:flex-row">
             <PrimaryButton href="#contact" icon={CalendarCheck}>
               Book Free Trial
             </PrimaryButton>
             <SecondaryButton href="#membership">View Membership</SecondaryButton>
           </div>
 
-          <div className="mt-8 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-6 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
             {trustItems.map((item) => (
               <div
                 key={item.label}
                 className="rounded-2xl border border-white/10 bg-black/[0.42] px-4 py-4 backdrop-blur-md"
               >
-                <div className="font-display text-3xl font-black leading-none text-white">{item.value}</div>
+                <div className="font-display text-2xl font-black leading-none text-white sm:text-3xl">{item.value}</div>
                 <div className="mt-1 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-stone-400">
                   {item.label}
                 </div>
@@ -519,7 +519,7 @@ function Hero() {
               <img
                 src={placeExterior}
                 alt="Body Formula Fitness exterior signage"
-                className="h-[34rem] w-full object-cover"
+                className="h-[28rem] w-full object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/15 to-transparent" />
