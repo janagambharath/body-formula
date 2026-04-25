@@ -1326,13 +1326,23 @@ export default function App() {
   useEffect(() => {
     const scrollToHash = () => {
       const target = window.location.hash ? document.querySelector(window.location.hash) : null;
-      if (target) target.scrollIntoView({ block: 'start' });
+      if (!target) return;
+      const top = target.getBoundingClientRect().top + window.scrollY - 78;
+      window.scrollTo({ top, behavior: 'auto' });
     };
 
+    let attempts = 0;
     const timeoutId = window.setTimeout(scrollToHash, 120);
+    const intervalId = window.setInterval(() => {
+      attempts += 1;
+      scrollToHash();
+      if (attempts >= 12 || !window.location.hash) window.clearInterval(intervalId);
+    }, 250);
+
     window.addEventListener('hashchange', scrollToHash);
     return () => {
       window.clearTimeout(timeoutId);
+      window.clearInterval(intervalId);
       window.removeEventListener('hashchange', scrollToHash);
     };
   }, []);
